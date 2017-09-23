@@ -1,11 +1,18 @@
 language: node_js
 node_js: lts/*
 sudo: false
+
 before_install:
 - curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --version 0.27.5
 - export PATH=$HOME/.yarn/bin:$PATH
 cache:
   yarn: true
+
+notifications:
+  email:
+    on_success: never
+    on_failure: always
+
 install:
 - yarn install
 script:
