@@ -41,7 +41,7 @@ class Settings extends Component {
 				<form>
 					<label>
 						Klasse:
-						<select onChange={this.handleChange}>
+						<select value={this.state.klasse} onChange={this.handleChange}>
 							{this.stufen}
 						</select>
 					</label>
