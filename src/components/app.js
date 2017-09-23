@@ -1,11 +1,16 @@
 import { h, Component } from 'preact';
 import { Router } from 'preact-router';
 import ReactGA from 'react-ga';
-ReactGA.initialize('UA-102336808-2');
 
 import Header from './header';
 import Home from '../routes/home';
 import Settings from '../routes/settings';
+
+const isBrowser = typeof window !== 'undefined';
+
+if (isBrowser) {
+	ReactGA.initialize('UA-102336808-2');
+}
 
 export default class App extends Component {
 	
