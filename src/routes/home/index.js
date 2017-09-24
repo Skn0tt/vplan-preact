@@ -17,15 +17,17 @@ class Home extends Component {
 			state.items
 				.filter(item => item.klasse == state.klasse)
 		)
-		.sort((a, b) => a.begin > b.begin)
+		.sort((a, b) => a.date > b.date)
 		.map(item => (
 			<Item {...item} />
 		));
 
 	refresh() {
-		//TODO: Fetch
-		
 		if (isBrowser) {
+			fetch('https://firebasestorage.googleapis.com/v0/b/vplan-preact.appspot.com/o/mock.json?alt=media&token=d57ce951-81be-428c-8865-bb215161fbe2')
+				.then(res => this.setState({ items: res }))
+				.catch(err => console.log('Fetch failed, error: ', err))
+
 			localStorage.setItem('items', JSON.stringify(this.state.items));
 			localStorage.setItem('klasse', JSON.stringify(this.state.klasse));
 		}
@@ -38,7 +40,7 @@ class Home extends Component {
 			let items = JSON.parse(localStorage.getItem('items'));
 			let klasse = JSON.parse(localStorage.getItem('klasse'));
 			
-			if (items == null) items = mockItems;
+			// if (items == null) items = mockItems;
 			if (klasse == null) klasse = 'Q1';
 	
 			this.state = {

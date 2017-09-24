@@ -1,0 +1,28 @@
+[debug] [2017-09-24T19:11:10.395Z] ----------------------------------------------------------------------
+[debug] [2017-09-24T19:11:10.397Z] Command:       /usr/local/Cellar/node/8.5.0/bin/node /usr/local/bin/firebase serve
+[debug] [2017-09-24T19:11:10.398Z] CLI Version:   3.12.0
+[debug] [2017-09-24T19:11:10.398Z] Platform:      darwin
+[debug] [2017-09-24T19:11:10.398Z] Node Version:  v8.5.0
+[debug] [2017-09-24T19:11:10.398Z] Time:          Sun Sep 24 2017 21:11:10 GMT+0200 (CEST)
+[debug] [2017-09-24T19:11:10.398Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2017-09-24T19:11:10.412Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2017-09-24T19:11:10.412Z] > authorizing via signed-in user
+[debug] [2017-09-24T19:11:10.414Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/vplan-preact  
+ Sun Sep 24 2017 21:11:10 GMT+0200 (CEST)
+[debug] [2017-09-24T19:11:11.201Z] <<< HTTP RESPONSE 200
+[debug] [2017-09-24T19:11:11.201Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/database/vplan-preact/tokens  
+ Sun Sep 24 2017 21:11:11 GMT+0200 (CEST)
+[debug] [2017-09-24T19:11:11.835Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Serving from '/Users/skn0tt/Documents/dev/Projekte/vplan-preact'...
+[info] 
+[debug] [2017-09-24T19:11:11.838Z] >>> HTTP REQUEST GET https://cloudresourcemanager.googleapis.com/v1/projects/vplan-preact  
+ Sun Sep 24 2017 21:11:11 GMT+0200 (CEST)
+[debug] [2017-09-24T19:11:12.635Z] <<< HTTP RESPONSE 200
+[debug] [2017-09-24T19:11:12.635Z] >>> HTTP REQUEST GET https://mobilesdk-pa.googleapis.com/v1/projects/952197838026/clients/_:getWebAppConfig  
+ Sun Sep 24 2017 21:11:12 GMT+0200 (CEST)
+[debug] [2017-09-24T19:11:13.189Z] <<< HTTP RESPONSE 200
+[info] i  hosting: Serving hosting files from: build
+[info] ✔  hosting: Local server: http://localhost:5000
+
