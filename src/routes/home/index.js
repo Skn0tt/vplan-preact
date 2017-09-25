@@ -12,10 +12,9 @@ const mockItems = [{"klasse":"9D","art":"Vertr.","datum":"2017-09-25","stunde":8
 const isBrowser = typeof window !== 'undefined'
 
 class Home extends Component {
-	listItems = state => 
+	listItems = state =>
 		refactor(
-			state.items
-				.filter(item => item.klasse == state.klasse)
+			state.items.filter(item => item.klasse == state.klasse)
 		)
 		.sort((a, b) => a.date > b.date)
 		.map(item => (
@@ -24,10 +23,7 @@ class Home extends Component {
 
 	refresh() {
 		if (isBrowser) {
-			fetch('https://firebasestorage.googleapis.com/v0/b/vplan-preact.appspot.com/o/mock.json?alt=media&token=d57ce951-81be-428c-8865-bb215161fbe2')
-				.then(res => this.setState({ items: res }))
-				.catch(err => console.log('Fetch failed, error: ', err))
-
+			this.setState({ items: mockItems })
 			localStorage.setItem('items', JSON.stringify(this.state.items));
 			localStorage.setItem('klasse', JSON.stringify(this.state.klasse));
 		}

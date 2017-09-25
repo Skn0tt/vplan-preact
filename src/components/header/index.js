@@ -9,14 +9,14 @@ const Header = (props, state) => (
 		<Toolbar.Row>
 			<Toolbar.Section align-start>
 				<Toolbar.Title>
-					<Link href="/" style={{ color: 'white' }}>
+					<Link href="/" style={{ color: 'white', textDecoration: 'none' }}>
 						vplan
 					</Link>
 				</Toolbar.Title>
 			</Toolbar.Section>
 			<Toolbar.Section align-end>
 				<Toolbar.Icon>
-					<Link href="/settings/" style={{ color: 'white' }}>
+					<Link href="/settings/" style={{ color: 'white', textDecoration: 'none' }}>
 						Settings
 					</Link>
 				</Toolbar.Icon>

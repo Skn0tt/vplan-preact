@@ -3,39 +3,21 @@ import { h } from 'preact';
 import List from 'preact-material-components/List';
 import 'preact-material-components/List/style.css';
 
-/*
-const beispiel = {
-	klasse: i.klasse,
-	art: i.art,
-	date: new Date(i.date.year, i.date.month, i.date.day, i.stunde),
-	dauer: 1,
-	statt: i.statt_lehrer,
-	vertreter: i.vertreter,
-	fach: i.fach,
-	statt_raum: i.statt_raum,
-	raum: i.raum,
-	bemerkung: i.bemerkung,
-	entfall: i.entfall
-};
-*/
-
 const styles = {
 	circle: {
+		width: 55,
 		display: 'inline-block',
-		width: 50,
-		height: 50,
-		borderRadius: 25,
+		borderRadius: '50%',
 		backgroundColor: '#444',
 		color: 'white',
 		textAlign: 'center',
-		verticalAlign: 'middle',
-		marginRight: 10
+		marginRight: 15
 	}
 };
 
 const Circle = (props, state) => (
 	<div style={styles.circle}>
-		{props.children}
+		<p style={{ verticalAlign: 'middle' }}>{props.children}</p>
 	</div>
 );
 
@@ -94,7 +76,16 @@ const eva = props => (
 	</List.TextContainer>
 );
 
-const klausur = props => ('K');
+const klausur = props => (
+	<List.TextContainer>
+		<List.PrimaryText>
+			Klausur {props.fach}
+		</List.PrimaryText>
+		<List.SecondaryText>
+			{props.vertreter} {props.bemerkung}
+		</List.SecondaryText>
+	</List.TextContainer>
+);
 
 const switchArt = props => {
 	switch (props.art) {
@@ -108,7 +99,7 @@ const switchArt = props => {
 };
 
 const Item = (props, state) => (
-	<List.Item>
+	<List.Item style={{ marginBottom: 2 }}>
 		<Circle>
 			{props.date.getHours()}-{props.date.getHours() + props.dauer}
 		</Circle>
