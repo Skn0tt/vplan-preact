@@ -1,7 +1,8 @@
 # vplan-preact
 
 ## TODO
-[ ] Darstellung d. Items
+[x] Darstellung d. Items
+[ ] List Divider Tage
 [ ] Fetching Info
   [ ] Reichelt um SSL für API bemühen
 [ ] vermarkten
