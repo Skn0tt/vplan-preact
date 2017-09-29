@@ -14,13 +14,14 @@ const isBrowser = typeof window !== 'undefined';
 
 class Home extends Component {
 	listItems = state =>
-		refactor(
-			state.items.filter(item => item.klasse === state.klasse)
-		)
-			.sort((a, b) => a.date > b.date)
-			.map(item => (
-				<Item {...item} />
-			));
+		isBrowser ?
+			refactor(
+				state.items.filter(item => item.klasse === state.klasse)
+			)
+				.sort((a, b) => a.date > b.date)
+				.map(item => (
+					<Item {...item} />
+				)) : [];
 
 	refreshData = () => {
 		if (isBrowser) {
@@ -93,7 +94,7 @@ class Home extends Component {
 						<p>Keine Vertretung!</p>
 				}
 				{
-					navigator.onLine ?
+					isBrowser && navigator.onLine ?
 						<RaisedButton
 							label="Refresh"
 							fullWidth
