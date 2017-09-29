@@ -1,28 +1,24 @@
 import { h } from 'preact';
 import { Link } from 'preact-router/match';
 
-import Toolbar from 'preact-material-components/Toolbar';
-import 'preact-material-components/Toolbar/style.css';
+import AppBar from 'material-ui/AppBar';
+
+import SettingsIcon from 'material-ui-icons/Settings';
 
 const Header = (props, state) => (
-	<Toolbar className="toolbar">
-		<Toolbar.Row>
-			<Toolbar.Section align-start>
-				<Toolbar.Title>
-					<Link href="/" style={{ color: 'white', textDecoration: 'none' }}>
-						vplan
-					</Link>
-				</Toolbar.Title>
-			</Toolbar.Section>
-			<Toolbar.Section align-end>
-				<Toolbar.Icon>
-					<Link href="/settings/" style={{ color: 'white', textDecoration: 'none' }}>
-						Settings
-					</Link>
-				</Toolbar.Icon>
-			</Toolbar.Section>
-		</Toolbar.Row>
-	</Toolbar>
+	<AppBar
+		title={
+			<Link href="/" style={{ color: 'white', textDecoration: 'none' }}>
+				vplan
+			</Link>
+		}
+		iconElementRight={
+			<Link href="/settings/" style={{ color: 'white', textDecoration: 'none' }}>
+				<SettingsIcon />
+			</Link>
+		}
+		showMenuIconButton={false}
+	/>
 );
 
 export default Header;

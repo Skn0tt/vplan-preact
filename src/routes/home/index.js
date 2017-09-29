@@ -1,7 +1,12 @@
 import { h, Component } from 'preact';
 
-import List from 'preact-material-components/List';
-import 'preact-material-components/List/style.css';
+import { List } from 'material-ui/List';
+
+import ReactPullToRefresh from 'react-pull-to-refresh';
+
+import textEncoding from 'text-encoding';
+
+import RefreshIndicator from 'material-ui/RefreshIndicator';
 
 import Item from '../../components/item';
 
@@ -21,12 +26,23 @@ class Home extends Component {
 			<Item {...item} />
 		));
 
-	refresh() {
-		if (isBrowser) {
-			this.setState({ items: mockItems })
-			localStorage.setItem('items', JSON.stringify(this.state.items));
-			localStorage.setItem('klasse', JSON.stringify(this.state.klasse));
-		}
+	refreshDataPromise = new Promise((resolve, reject) => {
+		const proxy = 'https://cors-anywhere.herokuapp.com/'
+		const api = 'http://vplanapp.ema-bonn.de/api?type=json'
+		fetch(proxy + api)
+			.then(res => res.json())
+			.then(items => {
+				this.setState({ items });
+				this.updateLocalStorage();
+				
+				resolve();
+			})
+			.catch(err => reject(err))
+	})
+
+	updateLocalStorage = () => {
+		localStorage.setItem('items', JSON.stringify(this.state.items));
+		localStorage.setItem('klasse', JSON.stringify(this.state.klasse));
 	}
 
 	constructor(props) {
@@ -52,17 +68,29 @@ class Home extends Component {
 	}
 
 	componentWillMount() {
-		this.refresh();
+		if (isBrowser) this.refreshDataPromise
+	}
+
+	handlePullToRefresh(resolve, reject) {
+		this.refreshDataPromise
+			.then(() => resolve())
+			.catch(() => reject())
 	}
 
 	render(props, state) {
 		const items = this.listItems(state);
 		return (
-			items.length > 0 ?
-			<List two-line>
-				{this.listItems(state)}
-			</List> :
-			<p>Keine Vertretung!</p>
+			<ReactPullToRefresh
+				onRefresh={this.handlePullToRefresh}
+			>
+			{
+				items.length > 0 ?
+				<List>
+					{items}
+				</List> :
+				<p>Keine Vertretung!</p>
+			}
+			</ReactPullToRefresh>
 		);
 	}
 }

@@ -1,7 +1,7 @@
 import { h } from 'preact';
 
-import List from 'preact-material-components/List';
-import 'preact-material-components/List/style.css';
+import { ListItem } from 'material-ui/List';
+import Avatar from 'material-ui/Avatar';
 
 const styles = {
 	circle: {
@@ -15,76 +15,76 @@ const styles = {
 	}
 };
 
-const Circle = (props, state) => (
-	<div style={styles.circle}>
-		<p style={{ verticalAlign: 'middle' }}>{props.children}</p>
-	</div>
-);
-
 const vertretung = props => (
-	<List.TextContainer>
-		<List.PrimaryText>
-			Vertretung {props.fach}
-		</List.PrimaryText>
-		<List.SecondaryText>
-			{props.vertreter} statt {props.statt} {props.bemerkung}
-		</List.SecondaryText>
-	</List.TextContainer>
+	<ListItem
+		leftAvatar={
+			<Avatar
+				children={`${props.date.getHours()} - ${props.date.getHours() + props.dauer - 1}`}
+			/>
+		}
+		primaryText={`Vertretung ${props.fach}`}
+		secondaryText={`${props.vertreter} statt ${props.statt} ${props.bemerkung}`}
+	/>
 );
 
 const betreuung = props => (
-	<List.TextContainer>
-		<List.PrimaryText>
-			Betreuung {props.fach}
-		</List.PrimaryText>
-		<List.SecondaryText>
-			{props.vertreter} statt {props.statt} {props.bemerkung}
-		</List.SecondaryText>
-	</List.TextContainer>
+	<ListItem
+		leftAvatar={
+			<Avatar
+				children={`${props.date.getHours()} - ${props.date.getHours() + props.dauer - 1}`}
+			/>
+		}
+		primaryText={`Betreuung ${props.fach}`}
+		secondaryText={`${props.vertreter} statt ${props.statt} ${props.bemerkung}`}
+	/>
 );
 
 const entfall = props => (
-	<List.TextContainer>
-		<List.PrimaryText>
-			Entfall {props.fach}
-		</List.PrimaryText>
-		<List.SecondaryText>
-			{props.statt} {props.bemerkung}
-		</List.SecondaryText>
-	</List.TextContainer>
+	<ListItem
+		leftAvatar={
+			<Avatar
+				children={`${props.date.getHours()} - ${props.date.getHours() + props.dauer - 1}`}
+			/>
+		}
+		primaryText={`Entfall ${props.fach}`}
+		secondaryText={`${props.statt} ${props.bemerkung}`}
+	/>
 );
 
 const raumVertretung = props => (
-	<List.TextContainer>
-		<List.PrimaryText>
-			Raumvertretung {props.fach}
-		</List.PrimaryText>
-		<List.SecondaryText>
-			{props.raum} statt {props.statt_raum} {props.bemerkung}
-		</List.SecondaryText>
-	</List.TextContainer>
+	<ListItem
+		leftAvatar={
+			<Avatar
+				children={`${props.date.getHours()} - ${props.date.getHours() + props.dauer - 1}`}
+			/>
+		}
+		primaryText={`Raumvertretung ${props.fach}`}
+		secondaryText={`${props.raum} statt ${props.statt_raum} ${props.bemerkung}`}
+	/>
 );
 
 const eva = props => (
-	<List.TextContainer>
-		<List.PrimaryText>
-			EVA {props.fach}
-		</List.PrimaryText>
-		<List.SecondaryText>
-			{props.statt} {props.bemerkung}
-		</List.SecondaryText>
-	</List.TextContainer>
+	<ListItem
+		leftAvatar={
+			<Avatar
+				children={`${props.date.getHours()} - ${props.date.getHours() + props.dauer - 1}`}
+			/>
+		}
+		primaryText={`EVA ${props.fach}`}
+		secondaryText={`${props.statt} ${props.bemerkung}`}
+	/>
 );
 
 const klausur = props => (
-	<List.TextContainer>
-		<List.PrimaryText>
-			Klausur {props.fach}
-		</List.PrimaryText>
-		<List.SecondaryText>
-			{props.vertreter} {props.bemerkung}
-		</List.SecondaryText>
-	</List.TextContainer>
+	<ListItem
+		leftAvatar={
+			<Avatar
+				children={`${props.date.getHours()} - ${props.date.getHours() + props.dauer - 1}`}
+			/>
+		}
+		primaryText={`Klausur ${props.fach}`}
+		secondaryText={`${props.vertreter} ${props.bemerkung}`}
+	/>
 );
 
 const switchArt = props => {
@@ -99,12 +99,7 @@ const switchArt = props => {
 };
 
 const Item = (props, state) => (
-	<List.Item style={{ marginBottom: 2 }}>
-		<Circle>
-			{props.date.getHours()}-{props.date.getHours() + props.dauer}
-		</Circle>
-		{switchArt(props)}
-	</List.Item>
+	switchArt(props)
 );
 
 export default Item;

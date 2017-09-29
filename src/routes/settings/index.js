@@ -1,16 +1,28 @@
 import { h, Component } from 'preact';
+
+import { route } from 'preact-router';
+
+import DropDownMenu from 'material-ui/DropDownMenu';
+import MenuItem from 'material-ui/MenuItem';
+
+import RaisedButton from 'material-ui/RaisedButton';
+
 import style from './style';
 
 class Settings extends Component {
 	stufen = ['5A', '5B', '5C', '5D', '6A', '6B', '6C', '6D', '7A', '7B', '7C', '7D', '8A', '8B', '8C', '8D', '9A', '9B', '9C', '9D', 'EF', 'Q1', 'Q2']
-		.map(item => <option>{item}</option>)
+		.map(item => <MenuItem value={item} primaryText={item} />)
 
 	handleChange = event => {
 		this.setState({
-			klasse: event.target.value
+			klasse: event.target.innerText
 		});
 
 		this.updateLocalStorage();
+	}
+
+	handleZurueckOnClick = event => {
+		route('/');
 	}
 
 	updateLocalStorage = () => {
@@ -35,17 +47,21 @@ class Settings extends Component {
 	}
 
 	render() {
-		
 		return (
 			<div class={style.home}>
-				<form>
-					<label>
-						Klasse:
-						<select value={this.state.klasse} onChange={this.handleChange}>
-							{this.stufen}
-						</select>
-					</label>
-				</form>
+				<DropDownMenu
+					value={this.state.klasse}
+					onChange={this.handleChange}
+					maxHeight={300}
+				>
+					{this.stufen}
+				</DropDownMenu>
+				
+				<RaisedButton
+					label="Zurück"
+					fullWidth
+					onClick={this.handleZurueckOnClick}
+				/>
 			</div>
 		);
 	}
