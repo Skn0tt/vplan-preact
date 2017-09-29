@@ -2,15 +2,26 @@ import { h, Component } from 'preact';
 import { Router } from 'preact-router';
 import ReactGA from 'react-ga';
 
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
+
 import Header from './header';
 import Home from '../routes/home';
 import Settings from '../routes/settings';
+import About from '../routes/About';
 
 const isBrowser = typeof window !== 'undefined';
 
 if (isBrowser) {
 	ReactGA.initialize('UA-102336808-2');
 }
+
+const theme = getMuiTheme({
+	appBar: {
+		color: '#2196f3'
+	}
+});
 
 export default class App extends Component {
 	
@@ -24,17 +35,18 @@ export default class App extends Component {
 		ReactGA.pageview(e.url);
 	};
 
-	comp
-
 	render() {
 		return (
-			<div id="app">
-				<Header />
-				<Router onChange={this.handleRoute}>
-					<Home path="/" />
-					<Settings path="/settings/" />
-				</Router>
-			</div>
+			<MuiThemeProvider muiTheme={theme}>
+				<div id="app">
+					<Header />
+					<Router onChange={this.handleRoute}>
+						<Home path="/" />
+						<Settings path="/settings/" />
+						<About path="/about/" />
+					</Router>
+				</div>
+			</MuiThemeProvider>
 		);
 	}
 }

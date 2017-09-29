@@ -2,47 +2,55 @@ import { h, Component } from 'preact';
 
 import { List } from 'material-ui/List';
 
-import ReactPullToRefresh from 'react-pull-to-refresh';
+import RaisedButton from 'material-ui/RaisedButton';
+
+import RefreshIndicator from 'material-ui/RefreshIndicator';
 
 import Item from '../../components/item';
 
 import refactor from './refactor';
 
-const isBrowser = typeof window !== 'undefined'
+const isBrowser = typeof window !== 'undefined';
 
 class Home extends Component {
 	listItems = state =>
 		refactor(
-			state.items.filter(item => item.klasse == state.klasse)
+			state.items.filter(item => item.klasse === state.klasse)
 		)
-		.sort((a, b) => a.date > b.date)
-		.map(item => (
-			<Item {...item} />
-		));
+			.sort((a, b) => a.date > b.date)
+			.map(item => (
+				<Item {...item} />
+			));
 
-	refreshDataPromise = new Promise((resolve, reject) => {
+	refreshData = () => {
 		if (isBrowser) {
-			const proxy = 'https://cors-anywhere.herokuapp.com/'
-			const api = 'http://vplanapp.ema-bonn.de/api?type=json'
+			console.log('refreshDataPromise');
+			this.setState({ refreshing: true });
+
+			const proxy = 'https://cors-anywhere.herokuapp.com/';
+			const api = 'http://vplanapp.ema-bonn.de/api?type=json';
 			fetch(proxy + api)
 				.then(res => res.json())
 				.then(items => {
-					this.setState({ items });
-					this.updateLocalStorage();
+					this.setState({
+						items,
+						refreshing: false
+					});
 
-					resolve();
+					this.updateLocalStorage();
 				})
-				.catch(err => reject(err))
+				.catch(err => console.error(err));
 		}
-		
-	})
+	}
 
 	updateLocalStorage = () => {
 		if (isBrowser) {
 			localStorage.setItem('items', JSON.stringify(this.state.items));
-			localStorage.setItem('klasse', JSON.stringify(this.state.klasse));	
+			localStorage.setItem('klasse', JSON.stringify(this.state.klasse));
 		}
 	}
+
+	handleRefreshButton = () => this.refreshData();
 
 	constructor(props) {
 		super(props);
@@ -50,48 +58,51 @@ class Home extends Component {
 		if (isBrowser) {
 			let items = JSON.parse(localStorage.getItem('items'));
 			let klasse = JSON.parse(localStorage.getItem('klasse'));
-			
-			// if (items == null) items = mockItems;
-			if (klasse == null) klasse = 'Q1';
+
+			if (klasse === null) klasse = 'Q1';
 	
 			this.state = {
+				refreshing: false,
 				items,
-				klasse,
+				klasse
 			};
-		} else {
-			this.state = {
-				items: [],
-				klasse: '5A'
-			}
 		}
 	}
 
 	componentWillMount() {
-		if (isBrowser) this.refreshDataPromise
+		if (isBrowser) this.refreshData();
 	}
 
-	handlePullToRefresh(resolve, reject) {
-		if (isBrowser) {
-			this.refreshDataPromise
-				.then(() => resolve())
-				.catch(() => reject())
-		}
-	}
-
-	render(props, state) {
-		const items = this.listItems(state);
+	render() {
+		const items = this.listItems(this.state);
 		return (
-			<ReactPullToRefresh
-				onRefresh={this.handlePullToRefresh}
-			>
-			{
-				items.length > 0 ?
-				<List>
-					{items}
-				</List> :
-				<p>Keine Vertretung!</p>
-			}
-			</ReactPullToRefresh>
+			<div style={{ position: 'relative' }}>
+				<RefreshIndicator
+					size={50}
+					loadingColor="#FF9800"
+					left={-25}
+					right={0}
+					top={50}
+					style={{ marginLeft: '50%' }}
+					status={this.state.refreshing ? 'loading' : 'hide'}
+				/>
+				{
+					items.length > 0 ?
+						<List>
+							{items}
+						</List> :
+						<p>Keine Vertretung!</p>
+				}
+				{
+					navigator.onLine ?
+						<RaisedButton
+							label="Refresh"
+							fullWidth
+							onClick={this.handleRefreshButton}
+						/> : null
+				}
+			</div>
+			
 		);
 	}
 }

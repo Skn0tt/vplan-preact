@@ -3,23 +3,19 @@ import { h } from 'preact';
 import { ListItem } from 'material-ui/List';
 import Avatar from 'material-ui/Avatar';
 
-const styles = {
-	circle: {
-		width: 55,
-		display: 'inline-block',
-		borderRadius: '50%',
-		backgroundColor: '#444',
-		color: 'white',
-		textAlign: 'center',
-		marginRight: 15
-	}
+const getText = props => {
+	if (props.dauer > 2)
+		return `${props.date.getHours()}-${props.date.getHours() + props.dauer - 1}`;
+	if (props.dauer === 2)
+		return `${props.date.getHours()}/${props.date.getHours() + props.dauer - 1}`;
+	return props.date.getHours();
 };
 
 const vertretung = props => (
 	<ListItem
 		leftAvatar={
 			<Avatar
-				children={`${props.date.getHours()} - ${props.date.getHours() + props.dauer - 1}`}
+				children={getText(props)}
 			/>
 		}
 		primaryText={`Vertretung ${props.fach}`}
@@ -31,7 +27,7 @@ const betreuung = props => (
 	<ListItem
 		leftAvatar={
 			<Avatar
-				children={`${props.date.getHours()} - ${props.date.getHours() + props.dauer - 1}`}
+				children={getText(props)}
 			/>
 		}
 		primaryText={`Betreuung ${props.fach}`}
@@ -43,7 +39,7 @@ const entfall = props => (
 	<ListItem
 		leftAvatar={
 			<Avatar
-				children={`${props.date.getHours()} - ${props.date.getHours() + props.dauer - 1}`}
+				children={getText(props)}
 			/>
 		}
 		primaryText={`Entfall ${props.fach}`}
@@ -55,7 +51,7 @@ const raumVertretung = props => (
 	<ListItem
 		leftAvatar={
 			<Avatar
-				children={`${props.date.getHours()} - ${props.date.getHours() + props.dauer - 1}`}
+				children={getText(props)}
 			/>
 		}
 		primaryText={`Raumvertretung ${props.fach}`}
@@ -67,7 +63,7 @@ const eva = props => (
 	<ListItem
 		leftAvatar={
 			<Avatar
-				children={`${props.date.getHours()} - ${props.date.getHours() + props.dauer - 1}`}
+				children={getText(props)}
 			/>
 		}
 		primaryText={`EVA ${props.fach}`}
@@ -79,7 +75,7 @@ const klausur = props => (
 	<ListItem
 		leftAvatar={
 			<Avatar
-				children={`${props.date.getHours()} - ${props.date.getHours() + props.dauer - 1}`}
+				children={getText(props)}
 			/>
 		}
 		primaryText={`Klausur ${props.fach}`}
