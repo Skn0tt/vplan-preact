@@ -4,10 +4,6 @@ import { List } from 'material-ui/List';
 
 import ReactPullToRefresh from 'react-pull-to-refresh';
 
-import textEncoding from 'text-encoding';
-
-import RefreshIndicator from 'material-ui/RefreshIndicator';
-
 import Item from '../../components/item';
 
 import refactor from './refactor';
