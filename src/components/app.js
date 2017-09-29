@@ -9,7 +9,7 @@ import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import Header from './header';
 import Home from '../routes/home';
 import Settings from '../routes/settings';
-import About from '../routes/About';
+import About from '../routes/about';
 
 const isBrowser = typeof window !== 'undefined';
 
