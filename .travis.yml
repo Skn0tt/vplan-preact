@@ -16,7 +16,7 @@ notifications:
 install:
 - yarn install
 script:
-- yarn build
+- yarn build --no-prerender
 
 deploy:
   skip_cleanup: true
