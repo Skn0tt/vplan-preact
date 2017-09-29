@@ -24,7 +24,6 @@ class Home extends Component {
 
 	refreshData = () => {
 		if (isBrowser) {
-			console.log('refreshDataPromise');
 			this.setState({ refreshing: true });
 
 			const proxy = 'https://cors-anywhere.herokuapp.com/';
@@ -102,7 +101,6 @@ class Home extends Component {
 						/> : null
 				}
 			</div>
-			
 		);
 	}
 }

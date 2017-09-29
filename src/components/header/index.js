@@ -17,8 +17,9 @@ const handleTitleClick = () => route('/');
 const Header = (props, state) => (
 	<AppBar
 		title="vplan"
-		position="fixed"
 		onTitleTouchTap={handleTitleClick}
+		showMenuIconButton={false}
+		// style={{ position: 'fixed' }}
 		iconElementRight={
 			<IconMenu
 				{...props}
@@ -38,7 +39,6 @@ const Header = (props, state) => (
 				/>
 			</IconMenu>
 		}
-		showMenuIconButton={false}
 	/>
 );
 

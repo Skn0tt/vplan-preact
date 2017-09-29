@@ -5,15 +5,14 @@
   "display": "standalone",
   "orientation": "portrait",
   "background_color": "#fff",
-  "theme_color": "#673ab8",
+  "theme_color": "#2196f3",
   "icons": [{
-    "src": "/assets/icons/android-chrome-192x192.png",
+    "src": "/assets/icons/EMA-Bonn-433x317.gif",
+    "type": "image/gif",
+    "sizes": "433x317"
+  }, {
+    "src": "/assets/icons/apple-icon-144x144.png",
     "type": "image/png",
-    "sizes": "192x192"
-  },
-  {
-    "src": "/assets/icons/android-chrome-512x512.png",
-    "type": "image/png",
-    "sizes": "512x512"
+    "sizes": "144x144"
   }]
 }
