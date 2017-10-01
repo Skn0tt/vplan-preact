@@ -40,6 +40,11 @@ export default class App extends Component {
 			<MuiThemeProvider muiTheme={theme}>
 				<div id="app">
 					<Header />
+					<div
+						style={{
+							height: 56
+						}}
+					/>
 					<Router onChange={this.handleRoute}>
 						<Home path="/" />
 						<Settings path="/settings/" />

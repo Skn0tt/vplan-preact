@@ -19,7 +19,7 @@ const Header = (props, state) => (
 		title="vplan"
 		onTitleTouchTap={handleTitleClick}
 		showMenuIconButton={false}
-		// style={{ position: 'fixed' }}
+		style={{ position: 'fixed' }}
 		iconElementRight={
 			<IconMenu
 				{...props}
