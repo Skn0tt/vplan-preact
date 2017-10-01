@@ -112,14 +112,9 @@ const dayDiff = (first, second) => {
 	return a.getTime() - b.getTime();
 };
 
-let dividerCount = 0;
 const divider = date => (
 	<div>
-		{
-			dividerCount++ !== 0 ?
-				<Divider />
-				: null
-		}
+		<Divider />
 		<Subheader>
 			{date.toLocaleDateString('de-DE', {
 				weekday: 'long',
@@ -135,6 +130,7 @@ const Item = (props, state) => {
 	let div = null;
 	if (dayDiff(props.date, lastDate) !== 0) div = divider(props.date);
 	lastDate = props.date;
+
 	return (
 		<div>
 			{div}

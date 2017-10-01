@@ -21,7 +21,8 @@ class Home extends Component {
 				.sort((a, b) => a.date.getTime() - b.date.getTime())
 				.map(item => (
 					<Item {...item} />
-				)) : [];
+				)) 
+			: [];
 
 	refreshData = () => {
 		if (isBrowser && navigator.onLine) {
@@ -81,8 +82,8 @@ class Home extends Component {
 					left={-25}
 					right={0}
 					top={100}
-					style={{ marginLeft: '50%', position: 'fixed' }}
 					status={this.state.refreshing ? 'loading' : 'hide'}
+					style={{ marginLeft: '50%', position: 'fixed' }}
 				/>
 				{
 					items.length > 0 ?

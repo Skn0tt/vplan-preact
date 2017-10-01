@@ -1,25 +1,3 @@
-/*
-const beispiel = {
-	klasse: '9D',
-	art: 'Vertr.',
-	datum: '2017-09-25',
-	stunde: 8,
-	statt_lehrer: 'KNE',
-	statt_fach: null,
-	statt_raum: 'F003',
-	vertreter: 'LEL',
-	fach: 'PK',
-	raum: 'F003',
-	bemerkung: '',
-	entfall: null,
-	date: {
-		year: 2017,
-		month: 9,
-		day: 25
-	}
-};
-*/
-
 const getItem = i => ({
 	klasse: i.klasse,
 	art: i.art,

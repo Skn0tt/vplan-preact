@@ -14,7 +14,7 @@ const About = (props, state) => (
 			label="Zurück"
 			fullWidth
 			onClick={handleZurueckOnClick}
-			style={{ marginBottom: 60 }}
+			style={{ position: 'fixed', bottom: 0, left: 0 }}
 		/>
 	</div>
 );
