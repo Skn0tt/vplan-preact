@@ -23,7 +23,7 @@ const beispiel = {
 const getItem = i => ({
 	klasse: i.klasse,
 	art: i.art,
-	date: new Date(i.date.year, i.date.month, i.date.day, i.stunde),
+	date: new Date(i.date.year, i.date.month - 1, i.date.day, i.stunde),
 	dauer: 1,
 	statt: i.statt_lehrer,
 	vertreter: i.vertreter,
