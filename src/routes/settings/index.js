@@ -2,7 +2,6 @@ import { h, Component } from 'preact';
 
 import { route } from 'preact-router';
 
-import Subheader from 'material-ui/Subheader';
 import DropDownMenu from 'material-ui/DropDownMenu';
 import MenuItem from 'material-ui/MenuItem';
 
