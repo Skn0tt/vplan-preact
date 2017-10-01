@@ -24,7 +24,7 @@ class Home extends Component {
 				)) : [];
 
 	refreshData = () => {
-		if (isBrowser) {
+		if (isBrowser && navigator.onLine) {
 			this.setState({ refreshing: true });
 
 			const proxy = 'https://cors-anywhere.herokuapp.com/';
