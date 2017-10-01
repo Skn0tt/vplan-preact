@@ -2,6 +2,7 @@ import { h, Component } from 'preact';
 
 import { route } from 'preact-router';
 
+import Subheader from 'material-ui/Subheader';
 import DropDownMenu from 'material-ui/DropDownMenu';
 import MenuItem from 'material-ui/MenuItem';
 
@@ -46,7 +47,10 @@ class Settings extends Component {
 
 	render() {
 		return (
-			<div>
+			<div style={{ marginTop: 40 }}>
+				<h3 style={{ marginLeft: 20 }}>
+					Klasse
+				</h3>
 				<DropDownMenu
 					value={this.state.klasse}
 					onChange={this.handleChange}
@@ -59,7 +63,7 @@ class Settings extends Component {
 					label="Zurück"
 					fullWidth
 					onClick={this.handleZurueckOnClick}
-					style={{ marginBottom: 60 }}
+					style={{ position: 'fixed', bottom: 0, left: 0 }}
 				/>
 			</div>
 		);
