@@ -18,7 +18,7 @@ class Home extends Component {
 			refactor(
 				state.items.filter(item => item.klasse === state.klasse)
 			)
-				.sort((a, b) => a.date > b.date)
+				.sort((a, b) => a.date.getTime() - b.date.getTime())
 				.map(item => (
 					<Item {...item} />
 				)) : [];

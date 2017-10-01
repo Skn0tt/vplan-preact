@@ -1,7 +1,9 @@
 import { h } from 'preact';
 
+import Subheader from 'material-ui/Subheader';
 import { ListItem } from 'material-ui/List';
 import Avatar from 'material-ui/Avatar';
+import Divider from 'material-ui/Divider';
 
 const getText = props => {
 	if (props.dauer > 2)
@@ -15,6 +17,7 @@ const vertretung = props => (
 	<ListItem
 		leftAvatar={
 			<Avatar
+				backgroundColor="#042540"
 				children={getText(props)}
 			/>
 		}
@@ -27,6 +30,7 @@ const betreuung = props => (
 	<ListItem
 		leftAvatar={
 			<Avatar
+				backgroundColor="#084B7F"
 				children={getText(props)}
 			/>
 		}
@@ -39,6 +43,7 @@ const entfall = props => (
 	<ListItem
 		leftAvatar={
 			<Avatar
+				backgroundColor="#1095FF"
 				children={getText(props)}
 			/>
 		}
@@ -51,6 +56,7 @@ const raumVertretung = props => (
 	<ListItem
 		leftAvatar={
 			<Avatar
+				backgroundColor="#0C70BF"
 				children={getText(props)}
 			/>
 		}
@@ -63,6 +69,7 @@ const eva = props => (
 	<ListItem
 		leftAvatar={
 			<Avatar
+				backgroundColor="#1095FF"
 				children={getText(props)}
 			/>
 		}
@@ -75,6 +82,7 @@ const klausur = props => (
 	<ListItem
 		leftAvatar={
 			<Avatar
+				backgroundColor="#084B7F"
 				children={getText(props)}
 			/>
 		}
@@ -94,8 +102,45 @@ const switchArt = props => {
 	}
 };
 
-const Item = (props, state) => (
-	switchArt(props)
+const dayDiff = (first, second) => {
+	const a = new Date(first.getTime());
+	const b = new Date(second.getTime());
+
+	a.setHours(0, 0, 0, 0);
+	b.setHours(0, 0, 0, 0);
+
+	return a.getTime() - b.getTime();
+};
+
+let dividerCount = 0;
+const divider = date => (
+	<div>
+		{
+			dividerCount++ !== 0 ?
+				<Divider />
+				: null
+		}
+		<Subheader>
+			{date.toLocaleDateString('de-DE', {
+				weekday: 'long',
+				day: '2-digit',
+				month: 'long'
+			})}
+		</Subheader>
+	</div>
 );
+
+let lastDate = new Date();
+const Item = (props, state) => {
+	let div = null;
+	if (dayDiff(props.date, lastDate) !== 0) div = divider(props.date);
+	lastDate = props.date;
+	return (
+		<div>
+			{div}
+			{switchArt(props)}
+		</div>
+	);
+};
 
 export default Item;
