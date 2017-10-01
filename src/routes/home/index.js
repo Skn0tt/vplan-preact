@@ -56,10 +56,8 @@ class Home extends Component {
 		super(props);
 
 		if (isBrowser) {
-			let items = JSON.parse(localStorage.getItem('items'));
-			let klasse = JSON.parse(localStorage.getItem('klasse'));
-
-			if (klasse === null) klasse = 'Q1';
+			let items = JSON.parse(localStorage.getItem('items')) || [];
+			let klasse = JSON.parse(localStorage.getItem('klasse')) || 'Q1';
 	
 			this.state = {
 				refreshing: false,
