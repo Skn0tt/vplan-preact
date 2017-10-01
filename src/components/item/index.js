@@ -87,7 +87,7 @@ const klausur = props => (
 			/>
 		}
 		primaryText={props.fach || props.statt}
-		secondaryText={`Klausur, ${props.vertreter} ${props.bemerkung}`}
+		secondaryText={`Klausur, ${props.vertreter}@${props.raum} ${props.bemerkung}`}
 	/>
 );
 
