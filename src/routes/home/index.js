@@ -82,8 +82,8 @@ class Home extends Component {
 					loadingColor="#FF9800"
 					left={-25}
 					right={0}
-					top={50}
-					style={{ marginLeft: '50%' }}
+					top={100}
+					style={{ marginLeft: '50%', position: 'fixed' }}
 					status={this.state.refreshing ? 'loading' : 'hide'}
 				/>
 				{
