@@ -24,7 +24,7 @@ const Header = (props, state) => (
 			<IconMenu
 				{...props}
 				iconButtonElement={
-					<IconButton label="More" >
+					<IconButton label="More" aria-label="More" >
 						<MoreVertIcon />
 					</IconButton>
 				}
