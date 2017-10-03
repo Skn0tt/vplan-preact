@@ -24,7 +24,9 @@ const Header = (props, state) => (
 			<IconMenu
 				{...props}
 				iconButtonElement={
-					<IconButton><MoreVertIcon /></IconButton>
+					<IconButton label="More" >
+						<MoreVertIcon />
+					</IconButton>
 				}
 				targetOrigin={{ horizontal: 'right', vertical: 'top' }}
 				anchorOrigin={{ horizontal: 'right', vertical: 'top' }}
