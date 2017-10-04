@@ -21,6 +21,7 @@ const vertretung = props => (
 				children={getText(props)}
 			/>
 		}
+		disabled
 		primaryText={props.fach || props.statt}
 		secondaryText={`Vertretung, ${props.vertreter} statt ${props.statt} ${props.bemerkung}`}
 	/>
@@ -34,6 +35,7 @@ const betreuung = props => (
 				children={getText(props)}
 			/>
 		}
+		disabled
 		primaryText={props.fach || props.statt}
 		secondaryText={`Betreuung, ${props.vertreter} statt ${props.statt} ${props.bemerkung}`}
 	/>
@@ -47,6 +49,7 @@ const entfall = props => (
 				children={getText(props)}
 			/>
 		}
+		disabled
 		primaryText={props.fach || props.statt}
 		secondaryText={`Entfall, ${props.statt} ${props.bemerkung}`}
 	/>
@@ -60,6 +63,7 @@ const raumVertretung = props => (
 				children={getText(props)}
 			/>
 		}
+		disabled
 		primaryText={props.fach  || props.statt}
 		secondaryText={`Raumvertretung, ${props.raum} statt ${props.statt_raum} ${props.bemerkung}`}
 	/>
@@ -73,6 +77,7 @@ const eva = props => (
 				children={getText(props)}
 			/>
 		}
+		disabled
 		primaryText={props.fach || props.statt}
 		secondaryText={`EVA ${props.statt} ${props.bemerkung}`}
 	/>
@@ -86,6 +91,7 @@ const klausur = props => (
 				children={getText(props)}
 			/>
 		}
+		disabled
 		primaryText={props.fach || props.statt}
 		secondaryText={`Klausur, ${props.vertreter}@${props.raum} ${props.bemerkung}`}
 	/>
