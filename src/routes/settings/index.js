@@ -2,10 +2,23 @@ import { h, Component } from 'preact';
 
 import { route } from 'preact-router';
 
-import DropDownMenu from 'material-ui/DropDownMenu';
 import MenuItem from 'material-ui/MenuItem';
+import SelectField from 'material-ui/SelectField';
 
 import RaisedButton from 'material-ui/RaisedButton';
+
+const styles = {
+	container: {
+		marginTop: 40,
+		marginLeft: 20,
+		marginRight: 20
+	},
+	button: {
+		position: 'fixed',
+		bottom: 0,
+		left: 0
+	}
+};
 
 class Settings extends Component {
 	stufen = ['5A', '5B', '5C', '5D', '6A', '6B', '6C', '6D', '7A', '7B', '7C', '7D', '8A', '8B', '8C', '8D', '9A', '9B', '9C', '9D', 'EF', 'Q1', 'Q2']
@@ -46,23 +59,23 @@ class Settings extends Component {
 
 	render() {
 		return (
-			<div style={{ marginTop: 40 }}>
-				<h3 style={{ marginLeft: 20 }}>
+			<div style={styles.container}>
+				<h3>
 					Klasse
 				</h3>
-				<DropDownMenu
+				<SelectField
 					value={this.state.klasse}
 					onChange={this.handleChange}
-					maxHeight={300}
+					fullWidth
 				>
 					{this.stufen}
-				</DropDownMenu>
+				</SelectField>
 				
 				<RaisedButton
 					label="Zurück"
 					fullWidth
 					onClick={this.handleZurueckOnClick}
-					style={{ position: 'fixed', bottom: 0, left: 0 }}
+					style={styles.button}
 				/>
 			</div>
 		);
