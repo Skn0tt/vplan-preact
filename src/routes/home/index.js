@@ -1,9 +1,7 @@
 import { h, Component } from 'preact';
 
 import { List } from 'material-ui/List';
-
 import RaisedButton from 'material-ui/RaisedButton';
-
 import RefreshIndicator from 'material-ui/RefreshIndicator';
 
 import Item from '../../components/item';
