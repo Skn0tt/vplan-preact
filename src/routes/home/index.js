@@ -18,8 +18,12 @@ class Home extends Component {
 			)
 				.sort((a, b) => a.date.getTime() - b.date.getTime())
 				.map(item => (
-					<Item {...item} />
-				)) 
+					<Item
+						onMark={this.props.onMark}
+						marked={this.props.marked.includes(item.fach)}
+						{...item}
+					/>
+				))
 			: [];
 
 	refreshData = () => {
