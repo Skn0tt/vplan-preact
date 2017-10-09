@@ -116,8 +116,6 @@ const klausur = props => (
 );
 
 const switchArt = props => {
-	console.log('marked', props.marked);
-
 	switch (props.art) {
 		case 'Vertr.': return vertretung(props);
 		case 'Betreuung': return betreuung(props);

@@ -13,7 +13,7 @@ import About from '../routes/about';
 
 const isBrowser = typeof window !== 'undefined';
 
-if (isBrowser) {
+if (isBrowser && navigator.onLine) {
 	ReactGA.initialize('UA-102336808-2');
 }
 
@@ -32,7 +32,8 @@ export default class App extends Component {
 	handleRoute = e => {
 		this.currentUrl = e.url;
 		
-		ReactGA.pageview(e.url);
+		if (isBrowser && navigator.onLine)
+			ReactGA.pageview(e.url);
 	};
 
 	onMark = kurs => {
