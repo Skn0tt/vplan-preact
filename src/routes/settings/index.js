@@ -4,6 +4,8 @@ import { route } from 'preact-router';
 
 import MenuItem from 'material-ui/MenuItem';
 import SelectField from 'material-ui/SelectField';
+import TextField from 'material-ui/TextField';
+import FloatingActionButton from 'material-ui/FloatingActionButton';
 
 import RaisedButton from 'material-ui/RaisedButton';
 
@@ -60,9 +62,7 @@ class Settings extends Component {
 	render() {
 		return (
 			<div style={styles.container}>
-				<h3>
-					Klasse
-				</h3>
+				<h3> Klasse </h3>
 				<SelectField
 					value={this.state.klasse}
 					onChange={this.handleChange}
@@ -70,6 +70,16 @@ class Settings extends Component {
 				>
 					{this.stufen}
 				</SelectField>
+				
+				<h3> Kurse </h3>
+				<TextField
+					hintText="Kurs hinzufügen"
+					fullWidth
+				/>
+
+				<FloatingActionButton
+					color="#2196f3"
+				/>
 				
 				<RaisedButton
 					label="Zurück"
