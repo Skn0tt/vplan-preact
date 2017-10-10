@@ -1,24 +1,21 @@
 language: node_js
 node_js: lts/*
 sudo: false
-
 before_install:
 - curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --version 0.27.5
 - export PATH=$HOME/.yarn/bin:$PATH
 cache: yarn
-
 notifications:
   email:
     on_success: never
     on_failure: always
-
 install:
 - yarn install
 script:
 - yarn build
-
 deploy:
   skip_cleanup: true
   provider: firebase
   token:
-    secure: "eikRTkwj/p2+BF0FlMmCuHBpQ9p/gklf3kMR44nj8faSE6ECcLycahqg4AvZSHD3j7MZMDfE2RW5NIjkTD4TdbVQURCKYcr35mHnluiFT2rHEntgAT0QKjUf8fIDundW29J0T77/pp1lMT71M30PMPJ+LvFDxrWzBY4sOBkfwH4e9avmuaF89s7aqJmqGp7pETZ5SOS4R8d+grnQUX+5hLhWsGXc4UIx5/Ox9sUjvvebSETmiabt5JlUJfv0kF+yOzbRFfX7cJcyBeRtUE+4rTH65WjUOEOA1i5ejHFEQKXeh8/bNSWv/PA+4K7yo+DsAn04s2j24YG7l7A7Y0uEB7VolWOhuGvfYUyqXcaQRPiX4T1vuXxqWxYzBqDjPqBEfNOGh/06BtWo8frTdPZTdTg+DpY0u2d6+lcirG6/YsGNtT8mShWMqhOeTqdbhT+KtGjmerDCzVd34/skGfxr7O9phRuOkNO7hM7xLEytLzUMgOilBOdZXnI/CWFJZWC5CNca6G58ZUXlFkTu64zM199j7AUL97zBXIB6sypCqDWGXWLRr3FQiZjlZ/FBpBAttMvRNo9386/fW41RjkfiM5+UKIR4wv+a4Z21s0FoSERnaLx+DcPD+yOqHxPdjetEUFgFY7FQ+vxV/rxE1J36nci5E6+5ZuXO0IRbVV0EW88="
+    secure: jlMDaO8uzJwnrnSGdH3qjJVz1y9ZzNoOAhQ6mbUBWnwtJz3DAqqo3BvjyG72/zsnggI9usl7Q+tve0r4J23qdHLEGlw7vwCn8zhadFIF0ZP306qWPW4KAudZ8FncRmrZ+loGu0H3doe8c/IRWZWqJAQZwy1UH8CNxvkxnouEn2rllAEJqFRemmuQEH80JKjs8n/fPwGe/FXzC2/ImdYKr+uD+WsaSFsqgubFyU352bYyD7watGbcg0DbdjEhuvT9VwbavaFsqLlSV5/T9r92eoVxsmQSgPoODQcrZhT2222IchtGFBCLg9E31X3yjIP6DOwX/Iy5Z6hh73LLdSNhuyrB7FsQ+bDqnzyJCuNMhRuiz3wevDa48jmfAwgCW/5YFaFYJIcb2oJby+RGi56dEbBbUQcA2F8JE0fxL9hwfsPEhJvAiuPNZy/rdJO10X85L83XEiX5kM3FVyZ9952q7LkhRQGkTgmpSXOmSxch1ZEwV0I742mF7Lbzoe5Yvnskr8QhX+C0nquV6UA5OiAqXqHYhfaz00GQ48jurxvT85BQzFT47mmjbnbZHjtfITPcJoli3bUkhsa69W71D25En/RXnLc63k+RdxrDZTItlZh1F4AKasldPLunS3eiZDWnUvNTsGufJ7wEPZeFqz4tdVMWsDqyXlPn0bnPbjjWqFQ=
+    
