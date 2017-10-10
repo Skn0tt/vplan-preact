@@ -13,7 +13,7 @@ import About from '../routes/about';
 
 const isBrowser = typeof window !== 'undefined';
 
-if (isBrowser) {
+if (isBrowser && navigator.onLine) {
 	ReactGA.initialize('UA-102336808-2');
 }
 
@@ -32,21 +32,47 @@ export default class App extends Component {
 	handleRoute = e => {
 		this.currentUrl = e.url;
 		
-		ReactGA.pageview(e.url);
+		if (isBrowser && navigator.onLine)
+			ReactGA.pageview(e.url);
 	};
+
+	onMark = kurs => {
+		const marked = this.state.marked;
+
+		const index = marked.indexOf(kurs);
+
+		if (index > -1) marked.splice(index, 1);
+		else marked.push(kurs);
+
+		this.setState({ marked });
+
+		this.updateLocalStorage();
+	}
+
+	updateLocalStorage = () => {
+		if (isBrowser) {
+			localStorage.setItem('marked', JSON.stringify(this.state.marked));
+		}
+	}
+
+	constructor(props) {
+		super(props);
+
+		if (isBrowser) {
+			const marked = JSON.parse(localStorage.getItem('marked')) || [];
+
+			this.state = { marked };
+		}
+	}
 
 	render() {
 		return (
 			<MuiThemeProvider muiTheme={theme}>
 				<div id="app">
 					<Header />
-					<div
-						style={{
-							height: 56
-						}}
-					/>
+					<div style={{ height: 56 }} />
 					<Router onChange={this.handleRoute}>
-						<Home path="/" />
+						<Home path="/" marked={this.state.marked} onMark={this.onMark} />
 						<Settings path="/settings/" />
 						<About path="/about/" />
 					</Router>

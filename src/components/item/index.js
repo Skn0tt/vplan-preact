@@ -24,6 +24,9 @@ const vertretung = props => (
 		disabled
 		primaryText={props.fach || props.statt}
 		secondaryText={`Vertretung, ${props.vertreter} statt ${props.statt} ${props.bemerkung}`}
+		style={{
+			backgroundColor: props.marked ? '#3CA9FF' : null
+		}}
 	/>
 );
 
@@ -38,6 +41,9 @@ const betreuung = props => (
 		disabled
 		primaryText={props.fach || props.statt}
 		secondaryText={`Betreuung, ${props.vertreter} statt ${props.statt} ${props.bemerkung}`}
+		style={{
+			backgroundColor: props.marked ? '#3CA9FF' : null
+		}}
 	/>
 );
 
@@ -52,6 +58,9 @@ const entfall = props => (
 		disabled
 		primaryText={props.fach || props.statt}
 		secondaryText={`Entfall, ${props.statt} ${props.bemerkung}`}
+		style={{
+			backgroundColor: props.marked ? '#3CA9FF' : null
+		}}
 	/>
 );
 
@@ -66,6 +75,9 @@ const raumVertretung = props => (
 		disabled
 		primaryText={props.fach  || props.statt}
 		secondaryText={`Raumvertretung ${props.statt}, ${props.raum} statt ${props.statt_raum} ${props.bemerkung}`}
+		style={{
+			backgroundColor: props.marked ? '#3CA9FF' : null
+		}}
 	/>
 );
 
@@ -80,6 +92,9 @@ const eva = props => (
 		disabled
 		primaryText={props.fach || props.statt}
 		secondaryText={`EVA ${props.statt} ${props.bemerkung}`}
+		style={{
+			backgroundColor: props.marked ? '#3CA9FF' : null
+		}}
 	/>
 );
 
@@ -94,6 +109,9 @@ const klausur = props => (
 		disabled
 		primaryText={props.fach || props.statt}
 		secondaryText={`Klausur, ${props.vertreter}@${props.raum} ${props.bemerkung}`}
+		style={{
+			backgroundColor: props.marked ? '#3CA9FF' : null
+		}}
 	/>
 );
 

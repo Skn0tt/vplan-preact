@@ -18,8 +18,11 @@ class Home extends Component {
 			)
 				.sort((a, b) => a.date.getTime() - b.date.getTime())
 				.map(item => (
-					<Item {...item} />
-				)) 
+					<Item
+						marked={this.state.marked.includes(item.fach)}
+						{...item}
+					/>
+				))
 			: [];
 
 	refreshData = () => {
@@ -57,11 +60,13 @@ class Home extends Component {
 		if (isBrowser) {
 			let items = JSON.parse(localStorage.getItem('items')) || [];
 			let klasse = JSON.parse(localStorage.getItem('klasse')) || 'Q1';
+			let marked = JSON.parse(localStorage.getItem('marked')) || [];
 	
 			this.state = {
 				refreshing: false,
 				items,
-				klasse
+				klasse,
+				marked
 			};
 		}
 	}
