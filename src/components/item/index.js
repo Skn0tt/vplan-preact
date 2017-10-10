@@ -65,7 +65,7 @@ const raumVertretung = props => (
 		}
 		disabled
 		primaryText={props.fach  || props.statt}
-		secondaryText={`Raumvertretung, ${props.raum} statt ${props.statt_raum} ${props.bemerkung}`}
+		secondaryText={`Raumvertretung ${props.statt}, ${props.raum} statt ${props.statt_raum} ${props.bemerkung}`}
 	/>
 );
 
