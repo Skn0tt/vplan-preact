@@ -1,8 +1,14 @@
+import { fromJS } from 'immutable';
+
+const getDauer = ({ stunden }) => stunden[0].hour ? 1 : stunden[0].hour_to - stunden[0].hour_from + 1;
+
+const getStunde = ({ stunden }) => stunden[0].hour_from || stunden[0].hour;
+
 const getItem = i => ({
 	klasse: i.klasse,
 	art: i.art,
-	date: new Date(i.date.year, i.date.month - 1, i.date.day, i.stunde),
-	dauer: 1,
+	date: new Date(i.datum.jahr, i.datum.monat - 1, i.datum.tag, getStunde(i)).toString(),
+	dauer: getDauer(i),
 	statt: i.statt_lehrer,
 	vertreter: i.vertreter,
 	fach: i.fach,
@@ -12,23 +18,9 @@ const getItem = i => ({
 	entfall: i.entfall
 });
 
-const refactor = arr => {
-	const result = [];
-
-	arr.map(i => {
-		const item = getItem(i);
-
-		const sameBlock = result.find(i =>
-			i.date.hour === item.date.hour &&
-			i.fach === item.fach &&
-			i.vertreter === item.vertreter
-		);
-
-		if (sameBlock) sameBlock.dauer += 1;
-		else result.push(item);
-	});
-
-	return result;
+const refactor = async json => {
+	const arr = fromJS(json).delete('refresh_dateline').toList().valueSeq().toJS();
+	return arr.map(i => getItem(i));
 };
 
 export default refactor;

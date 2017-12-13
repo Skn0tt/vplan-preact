@@ -5,12 +5,13 @@ import { ListItem } from 'material-ui/List';
 import Avatar from 'material-ui/Avatar';
 import Divider from 'material-ui/Divider';
 
+const getHours = date => new Date(date).getHours();
 const getText = props => {
 	if (props.dauer > 2)
-		return `${props.date.getHours()}-${props.date.getHours() + props.dauer - 1}`;
+		return `${getHours(props.date)}-${getHours(props.date) + props.dauer - 1}`;
 	if (props.dauer === 2)
-		return `${props.date.getHours()}/${props.date.getHours() + props.dauer - 1}`;
-	return props.date.getHours();
+		return `${getHours(props.date)}/${getHours(props.date) + props.dauer - 1}`;
+	return getHours(props.date);
 };
 
 const vertretung = props => (
@@ -127,8 +128,8 @@ const switchArt = props => {
 };
 
 const dayDiff = (first, second) => {
-	const a = new Date(first.getTime());
-	const b = new Date(second.getTime());
+	const a = new Date(first);
+	const b = new Date(second);
 
 	a.setHours(0, 0, 0, 0);
 	b.setHours(0, 0, 0, 0);
@@ -136,15 +137,17 @@ const dayDiff = (first, second) => {
 	return a.getTime() - b.getTime();
 };
 
+const localisedDate = date => new Date(date).toLocaleDateString('de-DE', {
+	weekday: 'long',
+	day: '2-digit',
+	month: 'long'
+});
+
 const divider = date => (
 	<div>
 		<Divider />
 		<Subheader>
-			{date.toLocaleDateString('de-DE', {
-				weekday: 'long',
-				day: '2-digit',
-				month: 'long'
-			})}
+			{localisedDate(date)}
 		</Subheader>
 	</div>
 );

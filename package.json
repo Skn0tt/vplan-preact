@@ -20,6 +20,7 @@
     "preact-cli": "^1.4.1"
   },
   "dependencies": {
+    "immutable": "^3.8.2",
     "material-ui": "^0.19.2",
     "preact": "^8.2.5",
     "preact-router": "^2.5.7",

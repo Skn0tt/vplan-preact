@@ -10,13 +10,13 @@ import refactor from './refactor';
 
 const isBrowser = typeof window !== 'undefined';
 
+const time = item => new Date(item.date).getTime();
+
 class Home extends Component {
 	listItems = state =>
 		isBrowser ?
-			refactor(
-				state.items.filter(item => item.klasse === state.klasse)
-			)
-				.sort((a, b) => a.date.getTime() - b.date.getTime())
+			state.items.filter(item => item.klasse === state.klasse)
+				.sort((a, b) => time(a) - time(b))
 				.map(item => (
 					<Item
 						marked={this.state.marked.includes(item.fach)}
@@ -30,9 +30,10 @@ class Home extends Component {
 			this.setState({ refreshing: true });
 
 			const proxy = 'https://cors-anywhere.herokuapp.com/';
-			const api = 'http://vplanapp.ema-bonn.de/api?type=json';
+			const api = 'http://vplanapp.ema-bonn.de/api?advanced_substitutes=1&type=json';
 			fetch(proxy + api)
 				.then(res => res.json())
+				.then(res => refactor(res))
 				.then(items => {
 					this.setState({
 						items,
@@ -60,7 +61,7 @@ class Home extends Component {
 		if (isBrowser) {
 			let items = JSON.parse(localStorage.getItem('items')) || [];
 			let klasse = JSON.parse(localStorage.getItem('klasse')) || 'Q1';
-			let marked = JSON.parse(localStorage.getItem('marked')) || [];
+			let marked = JSON.parse(localStorage.getItem('marked')) || [];
 	
 			this.state = {
 				refreshing: false,
