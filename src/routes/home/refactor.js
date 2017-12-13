@@ -18,7 +18,7 @@ const getItem = i => ({
 	entfall: i.entfall
 });
 
-const refactor = async json => {
+const refactor = json => {
 	const arr = fromJS(json).delete('refresh_dateline').toList().valueSeq().toJS();
 	return arr.map(i => getItem(i));
 };

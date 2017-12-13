@@ -33,10 +33,9 @@ class Home extends Component {
 			const api = 'http://vplanapp.ema-bonn.de/api?advanced_substitutes=1&type=json';
 			fetch(proxy + api)
 				.then(res => res.json())
-				.then(res => refactor(res))
 				.then(items => {
 					this.setState({
-						items,
+						items: refactor(items),
 						refreshing: false
 					});
 
